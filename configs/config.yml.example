@@ -1,0 +1,9 @@
+port: ":8081"
+env: staging
+app_code: backend_test
+db:
+  host: localhost
+  username: root
+  password: password
+  name: backend_test_sanberhub
+  port: 54321

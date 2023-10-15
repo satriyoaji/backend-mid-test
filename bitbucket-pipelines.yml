@@ -1,0 +1,26 @@
+definitions:
+  steps:
+    - step: &sonar-test-step
+        name: SonarQube analysis
+        image: golang:1.18
+        services:
+          - docker
+        script:
+          - go env -w GOPRIVATE=${GOPRIVATE_REPOS}
+          - go env -w GO111MODULE=on
+          - git config --global url."https://${BITBUCKET_USER}:${BITBUCKET_TOKEN}@bitbucket.org/".insteadOf "https://bitbucket.org/"
+          - export TESTCONTAINERS_RYUK_DISABLED=true
+          - go mod tidy
+          - go install github.com/vektra/mockery/v2@latest
+          - make generate-mocks test coverage
+          - pipe: sonarsource/sonarqube-scan:1.2.0
+            variables:
+              SONAR_HOST_URL: ${SONAR_HOST_URL} # Get the value from the repository/workspace variable.
+              SONAR_TOKEN: ${SONAR_TOKEN} # Get the value from the repository/workspace variable. You shouldn't set secret in clear text here.
+  caches:
+    sonar: ~/.sonar
+
+pipelines:
+  pull-requests:
+    '**':        #this runs as default for any branch not elsewhere defined
+      - step: *sonar-test-step
