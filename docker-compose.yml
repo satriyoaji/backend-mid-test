@@ -29,15 +29,20 @@ services:
       - fullstack
     volumes:
       - pgdata:/var/lib/postgresql/data
-#  migrate:
-#    image: migrate/migrate
+#  pg_db_test:
+#    container_name: pg_db_test
+#    image: postgres:14
+#    environment:
+#      - POSTGRES_USER=${DB_USER_TEST}
+#      - POSTGRES_PASSWORD=${DB_PASSWORD_TEST}
+#      - POSTGRES_DB=${DB_NAME_TEST}
+#      - DATABASE_HOST=${DB_HOST_TEST}
+#    ports:
+#      - '54322:5432'
+#    networks:
+#      - fullstack
 #    volumes:
-#      - ./database/migrations:/database/migrations
-#    command: [ "-path", "./migrations/", "-database",  "postgres://root:password@tcp(pg_db:54321)/backend_test_mid?parseTime=True&loc=Local", "-verbose", "up" ]
-#    links:
-#      - pg_db
-#    depends_on:
-#      - pg_db
+#      - pgdata:/var/lib/postgresql/data
 
 volumes:
   pgdata: {}

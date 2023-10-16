@@ -43,10 +43,11 @@ func WithInitialDatabase(user string, password string, dbName string) func(req *
 func SetupPostgres(ctx context.Context, opts ...PostgresContainerOption) (*PostgresContainer, error) {
 	skipReaper, _ := strconv.ParseBool(os.Getenv("TESTCONTAINERS_RYUK_DISABLED"))
 	req := testcontainers.ContainerRequest{
-		Image:        "postgres:13-alpine3.13",
+		Image:        "postgres:14",
 		Env:          map[string]string{},
 		ExposedPorts: []string{},
 		Cmd:          []string{"postgres", "-c", "fsync=off"},
+		WaitingFor:   wait.ForLog("database system is ready to accept connections"),
 		SkipReaper:   skipReaper,
 	}
 
