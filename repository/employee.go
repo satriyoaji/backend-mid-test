@@ -94,9 +94,9 @@ func (d DefaultRepository) FindEmployeeByID(ctx context.Context, id uint) (entit
 	return employee, err
 }
 
-func (d DefaultRepository) FindEmployeeByName(ctx context.Context, name string) (entity.Employee, error) {
+func (d DefaultRepository) FindEmployeeByEmail(ctx context.Context, email string) (entity.Employee, error) {
 	employee := entity.Employee{}
-	err := d.handler.Tx.WithContext(ctx).Where("name=?", name).First(&employee).Error
+	err := d.handler.Tx.WithContext(ctx).Where("email=?", email).First(&employee).Error
 	return employee, err
 }
 

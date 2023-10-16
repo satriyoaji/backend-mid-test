@@ -62,8 +62,20 @@ func (s *EmployeeServiceImpl) GetEmployeeByID(ctx echo.Context, req model.GetEmp
 
 func (s *EmployeeServiceImpl) CreateEmployee(ctx echo.Context, req model.CreateEmployeeRequest) (*model.CreateEmployeeResult, pkgerror.CustomError) {
 	rctx := ctx.Request().Context()
+
+	employeeFound, err := s.repo.FindEmployeeByEmail(rctx, req.Email)
+	if err != nil {
+		log.Error("Find user by Email error: ", err)
+		if !errors.Is(gorm.ErrRecordNotFound, err) {
+			return nil, pkgerror.ErrSystemError.WithError(err)
+		}
+	}
+	if employeeFound.Email != "" {
+		return nil, pkgerror.ErrEmployeeIsExist.WithError(errors.New("Employee `email` is already created."))
+	}
+
 	txSuccess := false
-	err := s.repo.TxBegin()
+	err = s.repo.TxBegin()
 	if err != nil {
 		log.Error("Start db transaction error: ", err)
 		return nil, pkgerror.ErrSystemError.WithError(err)
@@ -76,6 +88,7 @@ func (s *EmployeeServiceImpl) CreateEmployee(ctx echo.Context, req model.CreateE
 			}
 		}
 	}()
+
 	var employee entity.Employee
 	copyutil.Copy(&req, &employee)
 	err = s.repo.CreateEmployee(rctx, &employee)

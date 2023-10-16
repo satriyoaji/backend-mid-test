@@ -21,6 +21,7 @@ type Repository interface {
 	CountEmployees(ctx context.Context, filter model.GetEmployeesFilter) (int, error)
 	CreateEmployee(ctx context.Context, merchant *entity.Employee) error
 	FindEmployeeByID(ctx context.Context, id uint) (entity.Employee, error)
+	FindEmployeeByEmail(ctx context.Context, email string) (entity.Employee, error)
 	UpdateEmployee(ctx context.Context, merchant *entity.Employee) error
 	DeleteEmployee(ctx context.Context, id uint) error
 }

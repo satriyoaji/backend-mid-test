@@ -30,4 +30,5 @@ var (
 	ErrUndefinedPathPermission CustomError = CustomError{Code: "0003", Msg: "Undefined request path and/or permission mapping", HttpCode: http.StatusNotFound}
 	ErrForbiddenRequest        CustomError = CustomError{Code: "0004", Msg: "Request forbidden. Operation not allowed", HttpCode: http.StatusForbidden}
 	ErrEmployeeNotFound        CustomError = CustomError{Code: "0005", Msg: "Employee not found", HttpCode: http.StatusNotFound}
+	ErrEmployeeIsExist         CustomError = CustomError{Code: "0006", Msg: "Employee is already exist", HttpCode: http.StatusBadRequest}
 )
