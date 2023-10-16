@@ -116,7 +116,19 @@ func (s *EmployeeServiceImpl) EditEmployee(ctx echo.Context, req model.EditEmplo
 		}
 		return nil, pkgerror.ErrSystemError.WithError(err)
 	}
-	// Start transaction
+
+	// validate unique email on other employees
+	employeeByEmail, err := s.repo.FindEmployeeByEmail(rctx, req.Email)
+	if err != nil {
+		log.Error("Find user by Email error: ", err)
+		if !errors.Is(gorm.ErrRecordNotFound, err) {
+			return nil, pkgerror.ErrSystemError.WithError(err)
+		}
+	}
+	if employeeByEmail.Email != "" && employee.ID != employeeByEmail.ID {
+		return nil, pkgerror.ErrEmployeeIsExist.WithError(errors.New("Employee `email` is already created."))
+	}
+
 	txSuccess := false
 	err = s.repo.TxBegin()
 	if err != nil {
@@ -131,6 +143,8 @@ func (s *EmployeeServiceImpl) EditEmployee(ctx echo.Context, req model.EditEmplo
 			}
 		}
 	}()
+
+	copyutil.Copy(&req, &employee)
 	err = s.repo.UpdateEmployee(rctx, &employee)
 	if err != nil {
 		return nil, pkgerror.ErrSystemError.WithError(err)
