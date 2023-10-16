@@ -29,14 +29,17 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "name": {
+                    "code": {
                       "type": "string"
                     },
-                    "address": {
+                    "status": {
                       "type": "string"
                     },
-                    "phone": {
-                      "type": "string"
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Employee"
+                      }
                     }
                   }
                 }
@@ -70,7 +73,7 @@
                   "type": "object",
                   "properties": {
                     "code" : {
-                      "type": "number"
+                      "type": "string"
                     },
                     "status" : {
                       "type": "string"
@@ -110,7 +113,7 @@
                   "type": "object",
                   "properties": {
                     "code" : {
-                      "type": "number"
+                      "type": "string"
                     },
                     "status" : {
                       "type": "string"
@@ -157,7 +160,7 @@
                   "type": "object",
                   "properties": {
                     "code" : {
-                      "type": "number"
+                      "type": "string"
                     },
                     "status" : {
                       "type": "string"
@@ -195,7 +198,7 @@
                   "type": "object",
                   "properties": {
                     "code" : {
-                      "type": "number"
+                      "type": "string"
                     },
                     "status" : {
                       "type": "string"
@@ -222,13 +225,16 @@
       "CreateOrUpdateEmployee" : {
         "type": "object",
         "properties": {
-          "name": {
+          "first_name": {
             "type": "string"
           },
-          "address": {
+          "last_name": {
             "type": "string"
           },
-          "phone": {
+          "email": {
+            "type": "string"
+          },
+          "hire_date": {
             "type": "string"
           }
         }
@@ -239,13 +245,22 @@
           "id": {
             "type": "number"
           },
-          "name": {
+          "first_name": {
             "type": "string"
           },
-          "address": {
+          "last_name": {
             "type": "string"
           },
-          "phone": {
+          "email": {
+            "type": "string"
+          },
+          "hire_date": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "updated_at": {
             "type": "string"
           }
         }
