@@ -3,7 +3,6 @@
 ### Guidelines
 
 Prerequisite:
-- Golang 1.18 or higher
 - Docker
 - Make (CLI)
 
