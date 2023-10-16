@@ -1,10 +1,10 @@
-port: ":8080"
+port: ":8082"
 env: staging
-app_code: backend_testiing
+app_code: backend_testing_t
 db: 
   host: localhost
   username: postgres
-  password: postgres
-  name: backend_test_sanberhub_test
+  password: password
+  name: backend_test_mid_test
   port: 5432
 jwt_encryption_key: 9c1d50f1bda04eaf919b15428e6b8676

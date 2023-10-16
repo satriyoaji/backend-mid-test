@@ -1,9 +1,9 @@
-port: ":8081"
+port: ":3030"
 env: staging
 app_code: backend_test
 db:
-  host: localhost
+  host: pg_db
   username: root
   password: password
-  name: backend_test_sanberhub
-  port: 54321
+  name: backend_test_mid
+  port: 5432

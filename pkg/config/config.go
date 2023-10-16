@@ -18,8 +18,6 @@ type ConfigData struct {
 		Username string `yaml:"username"`
 		Password string `yaml:"password"`
 	} `yaml:"db"`
-	RemoteTimezoneURL string `yaml:"remote_timezone_url"`
-	JwtEncryptionKey  string `yaml:"jwt_encryption_key"`
 }
 
 func (c ConfigData) IsEnvProduction() bool {

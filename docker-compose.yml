@@ -1,8 +1,22 @@
 version: '3.9'
 
 services:
-  go_db:
-    container_name: go_db
+  api:
+    container_name: api_golang
+    build:
+      context: . # Use an image built from the specified dockerfile in the current directory.
+      dockerfile: ./Dockerfile
+    ports:
+      - "8081:3030"
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - pg_db
+    networks:
+      - fullstack
+#    command: go run ./cmd/app/main.go -b 0.0.0.0
+  pg_db:
+    container_name: pg_db
     image: postgres:14
     environment:
       - POSTGRES_USER=${DB_USER}
@@ -11,8 +25,23 @@ services:
       - DATABASE_HOST=${DB_HOST}
     ports:
       - '54321:5432'
+    networks:
+      - fullstack
     volumes:
       - pgdata:/var/lib/postgresql/data
+#  migrate:
+#    image: migrate/migrate
+#    volumes:
+#      - ./database/migrations:/database/migrations
+#    command: [ "-path", "./migrations/", "-database",  "postgres://root:password@tcp(pg_db:54321)/backend_test_mid?parseTime=True&loc=Local", "-verbose", "up" ]
+#    links:
+#      - pg_db
+#    depends_on:
+#      - pg_db
 
 volumes:
   pgdata: {}
+
+networks:
+  fullstack:
+    driver: bridge
