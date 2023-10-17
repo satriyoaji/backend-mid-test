@@ -21,7 +21,6 @@ dist/
 
 # Maven
 target/
-dist/
 
 # JetBrains IDE
 .idea/
@@ -50,3 +49,7 @@ Thumbs.db
 
 configs/config.yml
 .env
+
+coverage.out
+report.json
+mocks/
