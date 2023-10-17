@@ -1,0 +1,451 @@
+{
+	"info": {
+		"_postman_id": "54caf3a7-413b-4294-99fe-265fbdf8f6d2",
+		"name": "Backend Dev Test Mid",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11901092"
+	},
+	"item": [
+		{
+			"name": "Get All Employees",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/employees",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"employees"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/employees",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"employees"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 16 Oct 2023 02:03:03 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "512"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"SUCCESS\",\n    \"code\": \"0000\",\n    \"data\": [\n        {\n            \"id\": 2,\n            \"created_at\": \"2023-10-16T08:58:30.077939+07:00\",\n            \"updated_at\": \"2023-10-16T09:02:04.843878+07:00\",\n            \"hire_date\": \"0001-01-01T07:00:00+07:00\",\n            \"first_name\": \"Ryo\",\n            \"last_name\": \"Aji\",\n            \"email\": \"ryoaji_@gmail.com\"\n        },\n        {\n            \"id\": 1,\n            \"created_at\": \"2023-10-16T08:46:02.975163+07:00\",\n            \"updated_at\": \"2023-10-16T08:51:43.250931+07:00\",\n            \"hire_date\": \"0001-01-01T07:00:00+07:00\",\n            \"first_name\": \"Satriyo\",\n            \"last_name\": \"Aji\",\n            \"email\": \"satriyoaji27@gmail.com\"\n        }\n    ],\n    \"pagination\": null,\n    \"error_message\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Employee",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\": \"Ryo\",\r\n    \"last_name\": \"Ajeee\",\r\n    \"email\": \"ryoaji27@gmail.com\",\r\n    \"hire_date\": \"2023-06-27\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/employees",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"employees"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "email is existed",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\": \"Satriyo\",\r\n    \"last_name\": \"Aji\",\r\n    \"email\": \"satriyoaji27@gmail.com\",\r\n    \"hire_date\": \"2023-06-27\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/employees",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"employees"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 16 Oct 2023 01:46:44 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "155"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"ERROR\",\n    \"code\": \"0006\",\n    \"data\": null,\n    \"pagination\": null,\n    \"error_message\": \"Employee is already exist\",\n    \"remark\": \"Employee `email` is already created.\"\n}"
+				},
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\": \"Ryo\",\r\n    \"last_name\": \"Ajeee\",\r\n    \"email\": \"ryoaji27@gmail.com\",\r\n    \"hire_date\": \"2023-06-27\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/employees",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"employees"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 16 Oct 2023 23:42:36 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "285"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"SUCCESS\",\n    \"code\": \"0000\",\n    \"data\": {\n        \"id\": 5,\n        \"created_at\": \"2023-10-16T23:42:36.601859194Z\",\n        \"updated_at\": \"2023-10-16T23:42:36.601859194Z\",\n        \"first_name\": \"Ryo\",\n        \"last_name\": \"Ajeee\",\n        \"email\": \"ryoaji27@gmail.com\",\n        \"hire_date\": \"0001-01-01T00:00:00Z\"\n    },\n    \"pagination\": null,\n    \"error_message\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Update Employee",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\": \"Ryo\",\r\n    \"last_name\": \"Aji\",\r\n    \"email\": \"ryoaji27@gmail.com\",\r\n    \"hire_date\": \"2023-07-27\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/employees/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"employees",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "email existed",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\": \"Ryo\",\r\n    \"last_name\": \"Aji\",\r\n    \"email\": \"satriyoaji27@gmail.com\",\r\n    \"hire_date\": \"2023-07-27\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/employees/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"employees",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 16 Oct 2023 02:01:45 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "155"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"ERROR\",\n    \"code\": \"0006\",\n    \"data\": null,\n    \"pagination\": null,\n    \"error_message\": \"Employee is already exist\",\n    \"remark\": \"Employee `email` is already created.\"\n}"
+				},
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\": \"Ryo\",\r\n    \"last_name\": \"Aji\",\r\n    \"email\": \"ryoaji_@gmail.com\",\r\n    \"hire_date\": \"2023-07-27\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/employees/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"employees",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 16 Oct 2023 02:02:04 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "292"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"SUCCESS\",\n    \"code\": \"0000\",\n    \"data\": {\n        \"id\": 2,\n        \"created_at\": \"2023-10-16T08:58:30.077939+07:00\",\n        \"updated_at\": \"2023-10-16T09:02:04.8438782+07:00\",\n        \"first_name\": \"Ryo\",\n        \"last_name\": \"Aji\",\n        \"email\": \"ryoaji_@gmail.com\",\n        \"hire_date\": \"0001-01-01T07:00:00+07:00\"\n    },\n    \"pagination\": null,\n    \"error_message\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Find Employee by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/employees/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"employees",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/employees/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"employees",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 16 Oct 2023 02:02:29 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "291"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"SUCCESS\",\n    \"code\": \"0000\",\n    \"data\": {\n        \"id\": 2,\n        \"created_at\": \"2023-10-16T08:58:30.077939+07:00\",\n        \"updated_at\": \"2023-10-16T09:02:04.843878+07:00\",\n        \"first_name\": \"Ryo\",\n        \"last_name\": \"Aji\",\n        \"email\": \"ryoaji_@gmail.com\",\n        \"hire_date\": \"0001-01-01T07:00:00+07:00\"\n    },\n    \"pagination\": null,\n    \"error_message\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete Employee by ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/employees/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"employees",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
