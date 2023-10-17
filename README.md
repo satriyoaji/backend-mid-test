@@ -26,6 +26,6 @@ then wait e minute for the service running until success
 There are file `./apispec.json` and `./docs.postman_collection.json` to look up the API docs
 
 #### Testing Steps
-- run `make generate-mocks`
+- run `make generate-mocks` to mock all the necessary testing code
 - run `make test-verbose` or `make test` for overall unit test running
 - run 'make coverage' or 'make coverage-html' to know how many code coverage
